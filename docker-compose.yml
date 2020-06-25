@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql/mysql-server:5.7
+    restart: always
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWD}
+      - MYSQL_DATABASE=${DB_NAME}
+
+  prestashop:
+    image: prestashop/latest
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html/modules/${PS_MODULE_NAME}
+    environment:
+      - DB_SERVER=mysql
+      - DB_PREFIX=${DB_PREFIX}
+      - PS_DEV_MODE=${PS_DEV_MODE}
+      - PS_INSTALL_AUTO=1
+      - DB_USER=${DB_USER}
+      - DB_PASSWD=${DB_PASSWD}
+      - DB_NAME=${DB_NAME}
+      - PS_FOLDER_ADMIN=${PS_FOLDER_ADMIN}
+      - PS_DOMAIN=${PS_DOMAIN}:8080
+      - PS_LANGUAGE=${PS_LANGUAGE}
+      - PS_COUNTRY=${PS_COUNTRY}
+      - PS_FOLDER_INSTALL=installed
+      - ADMIN_MAIL=${ADMIN_MAIL}
+      - ADMIN_PASSWD=${ADMIN_PASSWD}
