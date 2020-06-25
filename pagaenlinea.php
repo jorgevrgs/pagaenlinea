@@ -23,8 +23,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-include_once 'classes/RbmApi.php';
-include_once 'models/Orders.php';
+include_once 'vendor/autoload.php';
 
 class PagaEnLinea extends PaymentModule
 {

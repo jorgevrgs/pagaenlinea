@@ -2,3 +2,4 @@
 *.xsd
 *.wsdl
 *.DS_Store
+vendor

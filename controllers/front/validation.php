@@ -17,7 +17,6 @@
 *
 * @version   2.0
 */
-include_once _PS_MODULE_DIR_.'pagaenlinea/libraries/browser/Browser.php';
 
 class PagaenlineaValidationModuleFrontController extends ModuleFrontController
 {
@@ -83,9 +82,6 @@ class PagaenlineaValidationModuleFrontController extends ModuleFrontController
             $this->errors[] = $this->module->l('An error occurred when trying to generate payment.');
         }
 
-        // Check browser
-        $browser = new Browser();
-
         $this->context->smarty->assign(array(
             'redirectUrl' => Tools::url(
                 $this->context->link->getPageLink('order-confirmation', true),
@@ -95,7 +91,7 @@ class PagaenlineaValidationModuleFrontController extends ModuleFrontController
                     'id_module' => $id_module,
                     'id_order' => $id_order,
                     'key' => $secure_key,
-                    'browser' => $browser,
+                    'isMobile' => (new Mobile_Detect())->isMobile(),
                 ))
             ),
         ));

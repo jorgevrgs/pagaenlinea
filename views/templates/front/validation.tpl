@@ -38,7 +38,7 @@
             href="{$buttonUrl|escape:'htmlall':'UTF-8'}"
             data-width="712"
             data-height="800"
-            data-mobile="{if isset($browser) && $browser->isMobile()}true{else}false{/if}"
+            data-mobile="{if isset($isMobile) && $isMobile}true{else}false{/if}"
             >
                 <em>({l s='If window don\'t open automatically click here...' mod='pagaenlinea'})</em>
             </a>
